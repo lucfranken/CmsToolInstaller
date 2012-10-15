@@ -9,9 +9,14 @@
 //move to the root folder of your application, most of the time: accountsname/domainname.com/
 
 //enter command:
-//git clone git@github.com:lucfranken/CmsToolInstaller.git';
+//git clone git@github.com:lucfranken/CmsToolInstaller.git
 
 //run the install.php script
+
+//check this can only be run from CLI
+if(PHP_SAPI != 'cli') {
+	die('Install only directly on server allowed.');
+}
 
 /*
  * HOW TO USE
@@ -29,6 +34,22 @@ $sshDir=$root.'.ssh/';
 $pluginsDir=$_SERVER['DOCUMENT_ROOT'].'plugins/';
 //clone command
 
+/*
+ * Check and configure directories
+ *
+ *
+ */
+
+mkdir($sshDir);
+
+//remove plugins directory
+rmdir($pluginsDir);
+
+if(!is_dir($root) OR !is_dir($sshDir)) {
+	die('Installer cannot find or create directories.');
+}
+
+
 //install ssh key
 $command='ssh-keygen -t rsa -N "" -f '.$sshDir.'github';
 shell_exec($command);
@@ -36,8 +57,6 @@ shell_exec($command);
 //copy config file
 copy('config', $sshDir.'config');
 
-//remove plugins directory
-rmdir($pluginsDir);
 
 //install first version of repository in plugins directory
 $command='git clone git@github.com:lucfranken/CmsTool.git plugins';
