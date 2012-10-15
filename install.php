@@ -42,13 +42,6 @@ $pluginsDir=$_SERVER['DOCUMENT_ROOT'].'plugins/';
 
 mkdir($sshDir);
 
-//remove plugins directory
-rmdir($pluginsDir);
-
-if(!is_dir($root) OR !is_dir($sshDir)) {
-	die('Installer cannot find or create directories.');
-}
-
 
 //install ssh key
 $command='ssh-keygen -t rsa -N "" -f '.$sshDir.'github';
@@ -59,12 +52,14 @@ copy('config', $sshDir.'config');
 
 
 //install first version of repository in plugins directory
-$command='git clone git@github.com:lucfranken/CmsTool.git plugins';
+$command='git clone git@github.com:lucfranken/CmsTool.git ../plugins';
 shell_exec($command);
 
-echo '<pre>';
+echo 'CmsToolInstaller
 
-echo file_get_contents($sshDir.'github');
+For updates add following SSH key to GitHub deploy keys.';
+
+echo file_get_contents($sshDir.'github.pub');
 
 echo "\n\n\n";
 
