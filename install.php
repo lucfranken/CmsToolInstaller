@@ -27,9 +27,9 @@ if(PHP_SAPI != 'cli') {
  *
  */
  
-//go to the directory of the website, for example /schijvens/schijvens.nl/
-//cd schijvens
-//cd schijvens.nl
+//go to the directory of the website, for example /hostingpackagename/domainname.nl/
+//cd hostingpackagename
+//cd domainname.nl
 
 
 /*
@@ -56,6 +56,7 @@ $tmpCakeDir=$domainDir.'caketmp/';
 //Application directory to put the template in
 $appDir=$domainDir.'app/';
 
+/*
 var_dump($currentDir);
 var_dump($hostingDir);
 var_dump($domainDir);
@@ -63,6 +64,7 @@ var_dump($sshDir);
 var_dump($pluginsDir);
 var_dump($tmpCakeDir);
 var_dump($appDir);
+*/
 
 /*
  * Check and configure directories
@@ -101,10 +103,6 @@ copy('sshconfig/config', $sshDir.'config');
  *
  *
  */
- 
-
-mkdir($tmpCakeDir);
-
 $command='git clone git://github.com/cakephp/cakephp.git '.$tmpCakeDir;
 shell_exec($command);
 
@@ -125,8 +123,7 @@ shell_exec('rm -Rf '.$tmpCakeDir);
  *
  *
  */
-mkdir($tmpCakeDir);
-
+ 
 $command='git clone git@github.com:lucfranken/CmsToolTemplate.git '.$appDir;
 shell_exec($command);
 
