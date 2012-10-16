@@ -53,12 +53,16 @@ $pluginsDir=$domainDir.'plugins/';
 //temporary directory to clone cakephp in
 $tmpCakeDir=$domainDir.'caketmp/';
 
+//Application directory to put the template in
+$appDir=$domainDir.'app/';
+
 var_dump($currentDir);
 var_dump($hostingDir);
 var_dump($domainDir);
 var_dump($sshDir);
 var_dump($pluginsDir);
 var_dump($tmpCakeDir);
+var_dump($appDir);
 
 /*
  * Check and configure directories
@@ -113,6 +117,19 @@ shell_exec('mv '.$tmpCakeDir.'.htaccess'.' '.$domainDir.'.htaccess');
 //remove the tmp CakePHP folder
 shell_exec('rm -Rf '.$tmpCakeDir);
 
+
+/*
+ * CmsToolTemplate installation
+ *
+ * Installing the CakePHP template to the /app folder.
+ *
+ *
+ */
+mkdir($tmpCakeDir);
+
+$command='git clone git@github.com:lucfranken/CmsToolTemplate.git '.$appDir;
+shell_exec($command);
+
 /*
  * INSTALL CmsTool plugins SETUP
  *
@@ -147,7 +164,7 @@ echo file_get_contents($sshDir.'github.pub');
 
 echo '
 
-2. Upload a 
+2. Add a Webhook in the configuration of GitHub to update the system.
 
 ';
 
