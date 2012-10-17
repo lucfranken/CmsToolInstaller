@@ -46,7 +46,7 @@ $domainDir=realpath($_SERVER['PWD'].'/../').'/';
 
 //specific directories
 $sshDir=$hostingDir.'.ssh/';
-$pluginsDir=$domainDir.'plugins/';
+$pluginsDir=$domainDir.'pluginsmanaged/';
 
 //temporary directory to clone cakephp in
 $tmpCakeDir=$domainDir.'caketmp/';
@@ -128,15 +128,17 @@ shell_exec($command);
 /*
  * INSTALL CmsTool plugins SETUP
  *
+ * Install the main plugin used in our new pluginsmanaged directory to have a 
+ * directly running version of the application.
  *
  */
-/*
-//install first version of repository in plugins directory
-$command='git clone git@github.com:lucfranken/CmsTool.git '.$pluginsDir;
+@mkdir($pluginsDir);
+
+//write a note that no one should install plugins here manually
+file_put_contents($pluginsDir.'README.txt', 'WARNING: Do not install plugins here manually, plugins in here are automatically installed.');
+
+$command='git clone git@github.com:lucfranken/CmsTool.git '.$pluginsDir.'CmsTool';
 shell_exec($command);
-*/
-
-
 
 /*
  * Finalize and inform user
