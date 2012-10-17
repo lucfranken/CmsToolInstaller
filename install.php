@@ -126,7 +126,7 @@ $command='git clone git@github.com:lucfranken/CmsToolTemplate.git '.$appDir;
 shell_exec($command);
 
 /*
- * INSTALL CmsTool plugins SETUP
+ * INSTALL CmsToolManager
  *
  * Install the main plugin used in our new pluginsmanaged directory to have a 
  * directly running version of the application.
@@ -137,7 +137,7 @@ shell_exec($command);
 //write a note that no one should install plugins here manually
 file_put_contents($pluginsDir.'README.txt', 'WARNING: Do not install plugins here manually, plugins in here are automatically installed.');
 
-$command='git clone git@github.com:lucfranken/CmsTool.git '.$pluginsDir.'CmsTool';
+$command='git clone git@github.com:lucfranken/CmsToolManager.git '.$pluginsDir.'CmsToolManager';
 shell_exec($command);
 
 /*
