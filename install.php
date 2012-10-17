@@ -27,9 +27,7 @@ if(PHP_SAPI != 'cli') {
  *
  */
  
-//go to the directory of the website, for example /hostingpackagename/domainname.nl/
-//cd hostingpackagename
-//cd domainname.nl
+//go to the directory of the website, for example accountsname/domainname.com/
 
 
 /*
