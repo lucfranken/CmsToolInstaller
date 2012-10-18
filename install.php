@@ -82,13 +82,14 @@ if(!is_dir($sshDir)) {
  *
  *
  */
-//install ssh key
-$command='ssh-keygen -t rsa -N "" -f '.$sshDir.'github';
-shell_exec($command);
-
-//copy config file
-copy('sshconfig/config', $sshDir.'config');
-
+if(!file_exists($sshDir.'github.pub')) {
+	//install ssh key
+	$command='ssh-keygen -t rsa -N "" -f '.$sshDir.'github';
+	shell_exec($command);
+	
+	//copy config file
+	copy('sshconfig/config', $sshDir.'config');
+}
 
 /*
  * CakePHP SETUP
