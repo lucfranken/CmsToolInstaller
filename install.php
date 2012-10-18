@@ -9,7 +9,7 @@
 //move to the root folder of your application, most of the time: accountsname/domainname.com/
 
 //enter command:
-//git clone git@github.com:lucfranken/CmsToolInstaller.git
+//git clone git://github.com/lucfranken/CmsToolInstaller.git
 
 //CHECK THE RESULT!: You now should have: accountsname/domainname.com/CmsToolInstaller/install.php
 //IF NOT DO NOT PROCEED, REMOVE ALL and try again
