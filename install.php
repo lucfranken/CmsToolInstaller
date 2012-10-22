@@ -16,18 +16,12 @@
 
 //run the install.php script
 
+echo 'CmsToolInstaller starting step 1/2'."\n\n";
+
 //check this can only be run from CLI
 if(PHP_SAPI != 'cli') {
 	die('Install only directly on server allowed.');
 }
-
-/*
- * HOW TO USE
- *
- *
- */
- 
-//go to the directory of the website, for example accountsname/domainname.com/
 
 
 /*
@@ -63,12 +57,16 @@ var_dump($pluginsDir);
 var_dump($tmpCakeDir);
 var_dump($appDir);
 */
+echo 'CmsToolInstaller will be installing in:
+  '.$domainDir."\n\n";
+
 
 /*
  * Check and configure directories
  *
  *
  */
+echo 'SSH directory setup in: '.$sshDir."\n\n";
 @mkdir($sshDir);
 
 if(!is_dir($sshDir)) {
@@ -83,12 +81,21 @@ if(!is_dir($sshDir)) {
  *
  */
 if(!file_exists($sshDir.'github.pub')) {
+	echo 'GitHub SSH key not available so generating'."\n\n";
+	
 	//install ssh key
 	$command='ssh-keygen -t rsa -N "" -f '.$sshDir.'github';
 	shell_exec($command);
 	
 	//copy config file
 	copy('sshconfig/config', $sshDir.'config');
+	
+	echo 'SSH key generated!'."\n\n";
+	
+	
+	echo 'The following key needs to be added to the GitHub account:'."\n\n";
+	
+	echo file_get_contents($sshDir.'github.pub')."\n\n";
 }
 
 /*
@@ -102,35 +109,27 @@ if(!file_exists($sshDir.'github.pub')) {
  *
  *
  */
-$command='git clone git://github.com/cakephp/cakephp.git '.$tmpCakeDir;
-shell_exec($command);
-
-//move lib folder to definitive location
-shell_exec('mv '.$tmpCakeDir.'lib'.' '.$domainDir.'lib');
-
-//move htaccess file
-shell_exec('mv '.$tmpCakeDir.'.htaccess'.' '.$domainDir.'.htaccess');
-
-//remove the tmp CakePHP folder
-shell_exec('rm -Rf '.$tmpCakeDir);
-
-
-/*
- * CmsToolTemplate installation
- *
- * Installing the CakePHP template to the /app folder.
- *
- *
- */
- 
-$command='git clone git@github.com:lucfranken/CmsToolTemplate.git '.$appDir;
-shell_exec($command);
+if(!is_dir($domainDir.'lib')) {
+	echo 'Start downloading and installation of CakePHP'."\n\n";
+	
+	$command='git clone git://github.com/cakephp/cakephp.git '.$tmpCakeDir;
+	shell_exec($command);
+	
+	//move lib folder to definitive location
+	shell_exec('mv '.$tmpCakeDir.'lib'.' '.$domainDir.'lib');
+	
+	//move htaccess file
+	shell_exec('mv '.$tmpCakeDir.'.htaccess'.' '.$domainDir.'.htaccess');
+	
+	//remove the tmp CakePHP folder
+	shell_exec('rm -Rf '.$tmpCakeDir);
+	echo 'Installation of CakePHP done'."\n\n";
+}
 
 /*
- * INSTALL CmsToolManager
+ * Create plugins directory
  *
- * Install the main plugin used in our new pluginsmanaged directory to have a 
- * directly running version of the application.
+ * Creates a directory and readme for the plugins.
  *
  */
 @mkdir($pluginsDir);
@@ -138,8 +137,8 @@ shell_exec($command);
 //write a note that no one should install plugins here manually
 file_put_contents($pluginsDir.'README.txt', 'WARNING: Do not install plugins here manually, plugins in here are automatically installed.');
 
-$command='git clone git@github.com:lucfranken/CmsToolManager.git '.$pluginsDir.'CmsToolManager';
-shell_exec($command);
+echo 'Created plugins directory'."\n\n";
+
 
 /*
  * Finalize and inform user
@@ -152,9 +151,7 @@ Installation complete. Congratulations!
 
 Your next steps:
 
-1. For updates add following SSH key to GitHub deploy keys:
-
-https://github.com/lucfranken/CmsTool/admin/keys
+1. Add following SSH key to the account
 
 ';
 
@@ -162,7 +159,7 @@ echo file_get_contents($sshDir.'github.pub');
 
 echo '
 
-2. Add a Webhook in the configuration of GitHub to update the system.
+2. After adding the key run php install2.php for installation of the first plugins.
 
 ';
 
