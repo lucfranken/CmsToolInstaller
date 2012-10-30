@@ -14,7 +14,7 @@ For installation you need the following:
 
 * The web path to the hosting package, may be a real or a test domain.
 
-#Installation procedure
+##Installation procedure
 
 1. Login to SSH account
 2. Move to the directory with the correct domain. So: /home/accountname/domain/
