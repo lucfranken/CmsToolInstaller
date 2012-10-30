@@ -1,10 +1,17 @@
 <?PHP
 
 /*
- * HOW TO INSTALL THIS INSTALLER
+ * CmsTool Installer
  *
+ * Install.php handles the installation of the CmsTool. The result will be a full
+ * installation of the CmsTool plugins and a template of a website. That way you
+ * can start working directly on the project.
+ *
+ * Be aware that the installer has 2 steps, after running this script you need
+ * to run install2.php otherwise the installation won't be complete.
  *
  */
+
 //login with ssh to the webserver
 //move to the root folder of your application, most of the time: accountsname/domainname.com/
 
