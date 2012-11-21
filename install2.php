@@ -33,9 +33,9 @@ echo 'Installation of CmsToolTemplate complete'."\n\n";
  *
  *
  */
-echo 'Installing CmsToolManager'."\n\n";
+echo 'Installing CmsTool'."\n\n";
 
-$command='git clone git@github.com:lucfranken/CmsToolManager.git '.$pluginsDir.'CmsToolManager';
+$command='git clone git@github.com:lucfranken/CmsTool.git '.$pluginsDir.'CmsTool';
 shell_exec($command);
 
-echo 'Installation of CmsToolManager complete'."\n\n";
+echo 'Installation of CmsTool complete'."\n\n";
