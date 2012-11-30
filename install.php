@@ -55,15 +55,6 @@ $tmpCakeDir=$domainDir.'caketmp/';
 //Application directory to put the template in
 $appDir=$domainDir.'app/';
 
-/*
-var_dump($currentDir);
-var_dump($hostingDir);
-var_dump($domainDir);
-var_dump($sshDir);
-var_dump($pluginsDir);
-var_dump($tmpCakeDir);
-var_dump($appDir);
-*/
 echo 'CmsToolInstaller will be installing in:
   '.$domainDir."\n\n";
 
