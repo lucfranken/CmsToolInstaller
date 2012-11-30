@@ -114,7 +114,7 @@ if(!is_dir($domainDir.'lib')) {
 
 	//remove the tmp CakePHP folder
 	//shell_exec('rm -Rf '.$tmpCakeDir);
-	rmdir($tmpCakeDir);
+	rrmdir($tmpCakeDir);
 
 
 	echo 'Installation of CakePHP done'."\n\n";
@@ -158,6 +158,16 @@ echo '
 ';
 
 
+// utils
 
+function rrmdir($dir) {
+	foreach(glob($dir . '/*') as $file) {
+		if(is_dir($file))
+			rrmdir($file);
+		else
+			unlink($file);
+	}
+	rmdir($dir);
+}
 
 
