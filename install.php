@@ -128,33 +128,3 @@ echo '
 2. After adding the key run php install2.php for installation of the first plugins.
 
 ';
-
-
-// utils
-
-function rrmdir($path) {
-	if(!file_exists($path)) {
-		throw new RecursiveDirectoryException('Directory doesn\'t exist.');
-	}
-
-	$directoryIterator = new DirectoryIterator($path);
-
-	foreach($directoryIterator as $fileInfo) {
-		$filePath = $fileInfo->getPathname();
-
-		if(!$fileInfo->isDot()) {
-			if($fileInfo->isFile()) {
-				unlink($filePath);
-			}
-			else if($fileInfo->isDir()) {
-				if( !rmdir($filePath) ) {
-					rrmdir($filePath);
-				}
-			}
-		}
-	}
-}
-
-
-
-

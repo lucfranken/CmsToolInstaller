@@ -7,6 +7,8 @@
  *
  */
 
+require_once('utilities.php');
+
 //check this can only be run from CLI
 if(PHP_SAPI != 'cli') {
 	die('Install only directly on server allowed.');
