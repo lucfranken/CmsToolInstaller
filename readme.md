@@ -3,29 +3,8 @@
 ##Introduction
 CmsTool is a standardized way of working with CakePHP projects. It is applicable for website projects and very basic applications. The focus of CmsTool is to allow a direct start on a website project. Automated installation and setup of a template.
 
-##Prequisites
-For installation you need the following:
+##Installation documentation
+Since this installer installs CmsTool you can also find the documentation in the CmsTool documentation: https://github.com/lucfranken/CmsTool
 
-* A hosting account at the hosting platform
-
-* SSH access to the hosting package
-
-* Functional database login
-
-* The web path to the hosting package, may be a real or a test domain.
-
-##Installation procedure
-
-1. Login to SSH account
-2. Move to the directory with the correct domain. So: /home/accountname/domain/
-3. Load the installer, execute the command:
-    git clone git://github.com/lucfranken/CmsToolInstaller.git
-4. Move to the installer directory
-    cd CmsToolInstaller
-5. Start running the installer
-    php install.php
-6. Follow the instructions on the terminal.
-
-
-
-
+##Why a separate repository?
+Because the installer should be public available. The installer works that way the most fast and user-friendly. For access to the source code authorisation is needed and that will also be handled by the installer tool.
