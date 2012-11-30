@@ -22,7 +22,7 @@ function rrmdir($path) {
 				unlink($filePath);
 			}
 			else if($fileInfo->isDir()) {
-				if( !rmdir($filePath) ) {
+				if(@!rmdir($filePath) ) {
 					rrmdir($filePath);
 				}
 			}
