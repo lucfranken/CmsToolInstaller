@@ -1,6 +1,16 @@
 <?PHP
 
-require_once('install.php');
+/*
+ * CmsTool Installer STEP 2
+ *
+ * Install.php installed the basics. Now we install 2 things:
+ * - The CmsToolTemplate (A basic CakePHP app with the right settings)
+ * - Managed plugin: CmsTool (the core of the CMS system)
+ * Be aware that the CmsTool plugin will install the other needed plugins.
+ *
+ */
+ 
+require_once('config.php');
 
 echo 'CmsToolInstaller starting step 2/2'."\n\n";
 

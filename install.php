@@ -1,7 +1,7 @@
 <?PHP
 
 /*
- * CmsTool Installer
+ * CmsTool Installer STEP 1
  *
  * Install.php handles the installation of the CmsTool. The result will be a full
  * installation of the CmsTool plugins and a template of a website. That way you
@@ -12,37 +12,9 @@
  *
  */
 
+require_once('config.php');
+
 echo 'CmsToolInstaller starting step 1/2'."\n\n";
-
-//check this can only be run from CLI
-if(PHP_SAPI != 'cli') {
-	die('Install only directly on server allowed.');
-}
-
-
-/*
- * Works with structure as explained above only
- *
- */
-//directory from which the installer is started
-$currentDir=dirname(__FILE__);
-if(basename($currentDir)!='CmsToolInstaller') {
-	die('Run this script from directory CmsToolInstaller');
-}
-
-//ROOT directories as explained above
-$hostingDir=realpath($currentDir.'/../../').'/';
-$domainDir=realpath($currentDir.'/../').'/';
-
-//specific directories
-$sshDir=$hostingDir.'.ssh/';
-$pluginsDir=$domainDir.'pluginsmanaged/';
-
-//temporary directory to clone cakephp in
-$tmpCakeDir=$domainDir.'caketmp/';
-
-//Application directory to put the template in
-$appDir=$domainDir.'app/';
 
 echo 'CmsToolInstaller will be installing in:
   '.$domainDir."\n\n";
