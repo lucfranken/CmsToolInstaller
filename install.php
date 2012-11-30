@@ -12,17 +12,6 @@
  *
  */
 
-//login with ssh to the webserver
-//move to the root folder of your application, most of the time: accountsname/domainname.com/
-
-//enter command:
-//git clone git://github.com/lucfranken/CmsToolInstaller.git
-
-//CHECK THE RESULT!: You now should have: accountsname/domainname.com/CmsToolInstaller/install.php
-//IF NOT DO NOT PROCEED, REMOVE ALL and try again
-
-//run the install.php script
-
 echo 'CmsToolInstaller starting step 1/2'."\n\n";
 
 //check this can only be run from CLI
