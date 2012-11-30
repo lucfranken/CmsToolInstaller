@@ -89,19 +89,19 @@ if(!is_dir($sshDir)) {
  */
 if(!file_exists($sshDir.'github.pub')) {
 	echo 'GitHub SSH key not available so generating'."\n\n";
-	
+
 	//install ssh key
 	$command='ssh-keygen -t rsa -N "" -f '.$sshDir.'github';
 	shell_exec($command);
-	
+
 	//copy config file
 	copy('sshconfig/config', $sshDir.'config');
-	
+
 	echo 'SSH key generated!'."\n\n";
-	
-	
+
+
 	echo 'The following key needs to be added to the GitHub account:'."\n\n";
-	
+
 	echo file_get_contents($sshDir.'github.pub')."\n\n";
 }
 
@@ -118,18 +118,25 @@ if(!file_exists($sshDir.'github.pub')) {
  */
 if(!is_dir($domainDir.'lib')) {
 	echo 'Start downloading and installation of CakePHP'."\n\n";
-	
+
 	$command='git clone git://github.com/cakephp/cakephp.git '.$tmpCakeDir;
 	shell_exec($command);
-	
+
 	//move lib folder to definitive location
-	shell_exec('mv '.$tmpCakeDir.'lib'.' '.$domainDir.'lib');
-	
+	//shell_exec('mv '.$tmpCakeDir.'lib'.' '.$domainDir.'lib');
+	rename($tmpCakeDir.'lib', $domainDir.'lib');
+
+
 	//move htaccess file
-	shell_exec('mv '.$tmpCakeDir.'.htaccess'.' '.$domainDir.'.htaccess');
-	
+	//shell_exec('mv '.$tmpCakeDir.'.htaccess'.' '.$domainDir.'.htaccess');
+	rename($tmpCakeDir.'.htaccess', $domainDir.'.htaccess');
+
+
 	//remove the tmp CakePHP folder
-	shell_exec('rm -Rf '.$tmpCakeDir);
+	//shell_exec('rm -Rf '.$tmpCakeDir);
+	rmdir($tmpCakeDir);
+
+
 	echo 'Installation of CakePHP done'."\n\n";
 }
 
