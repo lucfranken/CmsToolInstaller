@@ -132,14 +132,29 @@ echo '
 
 // utils
 
-function rrmdir($dir) {
-	foreach(glob($dir . '/*') as $file) {
-		if(is_dir($file))
-			rrmdir($file);
-		else
-			unlink($file);
+function rrmdir($path) {
+	if(!file_exists($path)) {
+		throw new RecursiveDirectoryException('Directory doesn\'t exist.');
 	}
-	rmdir($dir);
+
+	$directoryIterator = new DirectoryIterator($path);
+
+	foreach($directoryIterator as $fileInfo) {
+		$filePath = $fileInfo->getPathname();
+
+		if(!$fileInfo->isDot()) {
+			if($fileInfo->isFile()) {
+				unlink($filePath);
+			}
+			else if($fileInfo->isDir()) {
+				if( !rmdir($filePath) ) {
+					rrmdir($filePath);
+				}
+			}
+		}
+	}
 }
+
+
 
 
