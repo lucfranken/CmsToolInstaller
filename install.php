@@ -36,14 +36,14 @@ if(PHP_SAPI != 'cli') {
  *
  */
 //directory from which the installer is started
-$currentDir=$_SERVER['PWD'];
-if(basename($_SERVER['PWD'])!='CmsToolInstaller') {
+$currentDir=dirname(__FILE__);
+if(basename($currentDir)!='CmsToolInstaller') {
 	die('Run this script from directory CmsToolInstaller');
 }
 
 //ROOT directories as explained above
-$hostingDir=realpath($_SERVER['PWD'].'/../../').'/';
-$domainDir=realpath($_SERVER['PWD'].'/../').'/';
+$hostingDir=realpath($currentDir.'/../../').'/';
+$domainDir=realpath($currentDir.'/../').'/';
 
 //specific directories
 $sshDir=$hostingDir.'.ssh/';
