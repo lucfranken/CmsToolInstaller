@@ -39,3 +39,17 @@ $command='git clone git@github.com:lucfranken/CmsTool.git '.$pluginsDir.'CmsTool
 shell_exec($command);
 
 echo 'Installation of CmsTool complete'."\n\n";
+
+/*
+ * CmsToolManager removal
+ *
+ * Removed the installer after the installation.
+ *
+ *
+ */
+echo 'Removing CmsToolInstaller'."\n\n";
+
+$command='rm -Rf '.$installerDir;
+shell_exec($command);
+
+echo 'Removal of CmsTool complete'."\n\n";
